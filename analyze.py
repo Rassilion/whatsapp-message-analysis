@@ -1,11 +1,11 @@
-#!python3
+# -*- coding: utf-8 -*-
 import os, re, sys, graphs, openpyxl
 from openpyxl.styles import Font
 from openpyxl.styles import NamedStyle
 from operator import itemgetter
 
 #(Date)(, )(Hours:Minutes)(Seconds)(AM/PM)(:/ -)( )(Sender)(: )(Message)
-messageFormat = re.compile(r'^([0-9]{1,2}/[0-9]{2}/[0-9]{2})(, )([0-9]{1,2}:[0-9]{2})(:[0-9]{2})*( [A-Z]{2})( -|:)( )(.*?)(: )(.*)')
+messageFormat = re.compile(r'^([0-9]{1,2} [0-9]{2} [0-9]{4})(, )([0-9]{1,2}:[0-9]{2})()*( )(-)( )(.*?)(: )(.*)')
 #[Hours]:[Minutes]
 timeSplit = re.compile(r'([0-9]{1,2}):([0-9]{2})')
 
@@ -130,7 +130,7 @@ for lines in textToAnalyze:
                 hours = int(hours) + 12
         timeDictionary = analyze(timeDictionary, str(hours), 'Time')
         #Message. Ignore media.
-        if '<Media omitted>' not in found[10] and '<‎attached>' not in found[10]:
+        if '<Medya atlanmış>' not in found[10] and '<‎attached>' not in found[10]:
             messageList.append(found[10])
         noMessages += 1
 
