@@ -43,7 +43,7 @@ def sort(dictionary):
 
 #Get a dictionary of the most used words in the chat and the number of times they're used while ignoring commonly used words.
 def getWordFrequency(messageList):
-    wordFile = open('commonWords.txt', 'r')
+    wordFile = open('commonWords.txt', 'r', encoding='utf-8')
     commonWordsList = wordFile.read()
     wordFile.close()
     stripChars = re.compile(r'[a-zA-z0-9]+')
@@ -120,14 +120,10 @@ for lines in textToAnalyze:
         personDictionary = analyze(personDictionary, found[8], 'Sender')
         #Time
         time = timeSplit.search(found[3])
-        hours = time[1]
+        hours = time[0].split(':')[0]
         if len(hours) == 1:
             hours = '0' + str(hours)
-        if found[5] == ' PM':
-            if (int(hours) + 12) >= 24:
-                hours = 0
-            else:
-                hours = int(hours) + 12
+
         timeDictionary = analyze(timeDictionary, str(hours), 'Time')
         #Message. Ignore media.
         if '<Medya atlanmış>' not in found[10] and '<‎attached>' not in found[10]:
