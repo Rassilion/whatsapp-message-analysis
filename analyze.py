@@ -51,11 +51,13 @@ def getWordFrequency(messageList):
     for messages in messageList:
         wordsList = messages.split(' ')
         for words in wordsList:
-            words = words.lower()
-            if words in commonWordsList:
+            words = words.lower().strip()
+            if words in commonWordsList or len(words) == 1:
                 continue
             if stripChars.search(words):
                 words = stripChars.search(words).group()
+                if len(words) == 1:
+                    continue
                 for existingWords in frequencyList:
                     if existingWords['Word'] == words:
                         existingWords['Count'] += 1
@@ -126,6 +128,7 @@ for lines in textToAnalyze:
 
         timeDictionary = analyze(timeDictionary, str(hours), 'Time')
         #Message. Ignore media.
+        #filter by person found[8]=="name" and
         if '<Medya atlanmış>' not in found[10] and '<‎attached>' not in found[10]:
             messageList.append(found[10])
         noMessages += 1
