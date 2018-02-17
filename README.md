@@ -6,7 +6,7 @@ It's a script that analyzes all the messages in a given WhatsApp group chat and 
 
 ## Setup & Usage:
 
-_Requires Python3 and the following libraries: matplotlib, numpy_
+_Requires Python3.6 and the following libraries: matplotlib, numpy, openpyxl.
 
 1. Get a chat by going into a group -> Settings -> Email Chat -> No Media.
 
@@ -29,9 +29,8 @@ wordFrequency.png
 
 Only messages of the following types have been tested:
 
-* `18/05/16, 7:06:22 PM: ‪(username/phone number): message`
+* `10 12 2015, 16:52 - ‪(username/phone number): message`
 
-* `4/24/17, 6:30 PM - (username/phone number): message`
 
 ## Screenshots:
 
